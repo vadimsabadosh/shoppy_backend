@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 
 import { authRouter } from "./routes/auth.js";
+import { adminRouter } from "./routes/admin.js";
 
 const PORT = 3000;
 const DB =
@@ -9,6 +10,7 @@ const DB =
 const app = express();
 app.use(express.json());
 app.use(authRouter);
+app.use(adminRouter);
 
 app.get("/", (req, res) => {
 	res.json({ message: "ok" });

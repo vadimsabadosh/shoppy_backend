@@ -76,6 +76,10 @@ authRouter.get("/api/user/token", async (req, res) => {
 });
 
 authRouter.get("/api/user/getData", auth, async (req, res) => {
-	const user = await User.findById(req.user);
-	return res.json({ ...user._doc, token: req.token });
+	try {
+		const user = await User.findById(req.user);
+		return res.json({ ...user._doc, token: req.token });
+	} catch (e) {
+		return res.status(500).json({ error: err.message });
+	}
 });
