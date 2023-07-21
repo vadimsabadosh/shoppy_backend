@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { productSchema } from "./product.js";
 
 const userSchema = mongoose.Schema(
 	{
@@ -42,6 +43,15 @@ const userSchema = mongoose.Schema(
 			enum: ["customer", "supplier"],
 			default: "customer",
 		},
+		cart: [
+			{
+				product: productSchema,
+				quantity: {
+					type: Number,
+					required: true,
+				},
+			},
+		],
 	},
 	{ timestamps: true }
 );

@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
+import { ratingSchema } from "./rating.js";
 
-const productSchema = mongoose.Schema(
+export const productSchema = mongoose.Schema(
 	{
 		name: {
 			type: String,
@@ -33,6 +34,7 @@ const productSchema = mongoose.Schema(
 			required: true,
 			trim: true,
 		},
+		ratings: [ratingSchema],
 	},
 	{ timestamps: true }
 );
