@@ -103,3 +103,12 @@ userRouter.post("/api/order", auth, async (req, res) => {
 		return res.status(500).json({ error: e.message });
 	}
 });
+userRouter.get("/api/orders/me", auth, async (req, res) => {
+	try {
+		const id = req.user;
+		const orders = await Order.find({ userId: id });
+		return res.json(orders);
+	} catch (e) {
+		return res.status(500).json({ error: e.message });
+	}
+});
